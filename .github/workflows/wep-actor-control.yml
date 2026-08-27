@@ -1,0 +1,12 @@
+name: WEP actor control
+run-name: WEP-ACTOR-CONTROL-${{ github.sha }}
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  marker:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "WEP_ACTOR_CONTROL=${GITHUB_SHA}"

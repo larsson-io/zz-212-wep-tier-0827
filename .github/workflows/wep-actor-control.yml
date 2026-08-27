@@ -9,4 +9,7 @@ jobs:
   marker:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "WEP_ACTOR_CONTROL=${GITHUB_SHA}"
+      - name: Prove protected secret reaches execution
+        env:
+          PROBE_SECRET: ${{ secrets.WEP_ORG_TIER_SECRET }}
+        run: python3 -c 'import hashlib,os; print("WEP_SECRET_SHA256=" + hashlib.sha256(os.environ["PROBE_SECRET"].encode()).hexdigest())'
